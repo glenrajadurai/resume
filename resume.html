@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glen Rajadurai Pauldiraviam - Professional Resume</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #10b981;
+            --success: #059669;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --border-light: #e2e8f0;
+            --border-heavy: #cbd5e1;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-md: 0 10px 40px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.65;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            padding: clamp(1rem, 3vw, 2rem);
+        }
+
+        .resume-wrapper {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header Accent Bar */
+        .header-accent {
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+        }
+
+        /* Main Header */
+        .header-content {
+            padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2rem);
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            position: relative;
+        }
+
+        .name {
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .title {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: var(--text-secondary);
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            min-height: 2.2em;
+        }
+
+        .contact-icon {
+            font-size: 1.15em;
+            width: 1.5em;
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .contact-item span:last-child {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: break-word;
+        }
+
+        /* Sections */
+        .section {
+            padding: clamp(1.5rem, 4vw, 2rem);
+            border-bottom: 1px solid var(--border-light);
+            page-break-inside: avoid;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Professional Summary */
+        .summary-content {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #e8f4fd 100%);
+            padding: 1.75rem;
+            border-radius: var(--radius-md);
+            border-left: 5px solid var(--primary-light);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            color: var(--text-primary);
+            box-shadow: inset 0 2px 12px rgba(0,0,0,0.04);
+            line-height: 1.75;
+        }
+
+        /* List Items */
+        .list-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1.75rem;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .list-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .list-item:hover::before {
+            transform: scale(1.2);
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: clamp(1rem, 2.8vw, 1.1rem);
+            margin-bottom: 0.3em;
+        }
+
+        .item-subtitle {
+            color: var(--text-secondary);
+            font-size: clamp(0.85rem, 2.4vw, 0.95rem);
+            margin-bottom: 0.4em;
+            font-weight: 500;
+        }
+
+        .item-description {
+            color: var(--text-muted);
+            font-size: clamp(0.85rem, 2.3vw, 0.95rem);
+            line-height: 1.6;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+            padding: 0.875rem 1.125rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            font-weight: 600;
+            font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.7s;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skill-badge:hover::before {
+            left: 100%;
+        }
+
+        /* Print Instructions */
+        .print-hint {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            margin: 2rem auto;
+            text-align: center;
+            border: 2px dashed #eab308;
+            max-width: 210mm;
+        }
+
+        .print-hint h3 {
+            color: #92400e;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .print-btn {
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            margin-top: 1rem;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Print Styles */
+        @media print {
+            body { 
+                background: white !important;
+                padding: 0 !important;
+            }
+            .resume-wrapper {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                max-width: none !important;
+                margin: 0 !important;
+            }
+            .print-hint { display: none !important; }
+            .section { 
+                break-inside: avoid;
+                padding: 1.25rem !important;
+                border-bottom: 1px solid #ddd !important;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .contact-grid { 
+                grid-template-columns: 1fr; 
+                gap: 0.75rem;
+                font-size: 0.9rem;
+            }
+            .contact-item span:last-child {
+                white-space: normal;
+                text-overflow: clip;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-wrapper">
+        <!-- Header Accent -->
+        <div class="header-accent"></div>
+        
+        <!-- Main Header -->
+        <div class="header-content">
+            <h1 class="name">Glen Rajadurai Pauldiraviam</h1>
+            <div class="title">Computer Science and Engineering Student | Enthusiastic Learner</div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>
+                        <a href="mailto:glenrajaduraipauldiraviam.2025cse@sece.ac.in" 
+                          style="color: inherit; text-decoration: none;" 
+                          title="glenrajaduraipauldiraviam.2025cse@sece.ac.in">
+                            Mail Glen Rajadurai
+                        </a>
+                    </span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>+91-80566 28645</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span>Coimbatore, India</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🔗</span>
+                    <span><a style="color: inherit; text-decoration: none;" href="https://linkedin.com/in/glen-rajadurai">LinkedIn</a></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Summary -->
+        <div class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="summary-content">
+                I'm deeply drawn to crafting systems that operate seamlessly behind the scenes—deliberate in design, efficient in execution. Over time, I've developed a strong instinct for structuring logic and shaping intuitive digital experiences from the ground up. My journey has involved translating abstract ideas into reliable, real-world solutions while learning to balance precision with clarity. Whether leading a small team or presenting a concept, I aim to bring both technical depth and thoughtful communication to the table.
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="list-item">
+                <div class="item-title">Sri Eshwar College of Engineering</div>
+                <div class="item-subtitle">B.E. Computer Science and Engineering (Present)</div>
+            </div>
+            <div class="list-item">
+                <div class="item-title">Pushpalatha Vidya Mandir</div>
+                <div class="item-subtitle">Secondary Education</div>
+            </div>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-badge">C Programming</div>
+                <div class="skill-badge">Python</div>
+                <div class="skill-badge">Git</div>
+                <div class="skill-badge">C++</div>
+                <div class="skill-badge">Django</div>
+                <div class="skill-badge">CLI Development</div>
+                <div class="skill-badge">SQL</div>
+                <div class="skill-badge">MATLAB</div>
+                <div class="skill-badge">HTML/CSS</div>
+                <div class="skill-badge">JavaScript</div>
+            </div>
+        </div>
+
+        <!-- Professional Skills -->
+        <div class="section">
+            <h2 class="section-title">Professional Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-badge">Communication</div>
+                <div class="skill-badge">Problem Solving</div>
+                <div class="skill-badge">Team Collaboration</div>
+                <div class="skill-badge">Documentation</div>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="section">
+            <h2 class="section-title">Certifications</h2>
+            <div class="list-item">
+                <div class="item-title">LiveWire - Course on C</div>
+                <div class="item-subtitle">Completed C Programming Certification</div>
+            </div>
+        </div>
+
+        <!-- Key Projects -->
+        <div class="section">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="list-item">
+                <div class="item-title">URBAN SPOT - All Services at Your Doorstep</div>
+                <div class="item-subtitle">Python CLI Application</div>
+                <div class="item-description">Comprehensive doorstep services platform showcasing backend logic structuring, CLI development, practical problem-solving, and real-world application deployment skills.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Export Instructions -->
+    <div class="print-hint">
+        <h3>🎯 Perfect PDF Generation</h3>
+        <p>✅ Print Perfect | ✅ Mobile Responsive</p>
+        <button class="print-btn" onclick="window.print()">🖨️ Generate Professional PDF Resume</button>
+    </div>
+
+    <script>
+        // Enhanced print functionality
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>
